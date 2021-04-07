@@ -6,15 +6,17 @@
         `Karta: ${card.value}`
       }}</component>
     </div>
+    <BasicFooter :icons="false" />
   </div>
 </template>
 
 <script>
 import MiniLogo from "../components/MiniLogo.vue";
 import BasicCard from "../components/BasicCard.vue";
+import BasicFooter from "../components/BasicFooter.vue";
 export default {
   name: "EasyMode",
-  components: { BasicCard, MiniLogo },
+  components: { BasicCard, MiniLogo, BasicFooter },
   data() {
     return {
       cards: [],
@@ -26,67 +28,55 @@ export default {
         if (i == 0 || i == 1) {
           this.cards.push({
             id: i,
-            value: "Piegusek",
+            value: "catDead",
           });
         }
         if (i == 2 || i == 3) {
           this.cards.push({
             id: i,
-            value: "Landrynka",
+            value: "cyclopDead",
           });
         }
         if (i == 4 || i == 5) {
           this.cards.push({
             id: i,
-            value: "Rożek",
+            value: "flyingDead",
           });
         }
         if (i == 6 || i == 7) {
           this.cards.push({
             id: i,
-            value: "Karmelek",
+            value: "grassDead",
           });
         }
         if (i == 8 || i == 9) {
           this.cards.push({
             id: i,
-            value: "Czekolad",
+            value: "hagDead",
           });
         }
         if (i == 10 || i == 11) {
           this.cards.push({
             id: i,
-            value: "Miętusek",
+            value: "skeletonDead",
           });
         }
         if (i == 12 || i == 13) {
           this.cards.push({
             id: i,
-            value: "Miętusek",
+            value: "vampireDead",
           });
         }
         if (i == 14 || i == 15) {
           this.cards.push({
             id: i,
-            value: "Miętusek",
+            value: "wizardDead",
           });
         }
         if (i == 16 || i == 17) {
           this.cards.push({
             id: i,
-            value: "Miętusek",
-          });
-        }
-        if (i == 18 || i == 19) {
-          this.cards.push({
-            id: i,
-            value: "Miętusek",
-          });
-        }
-        if (i == 20 || i == 21) {
-          this.cards.push({
-            id: i,
-            value: "Miętusek",
+            value: "yellowDead",
           });
         }
         this.shuffleArray(this.cards);
@@ -110,13 +100,14 @@ export default {
 
 <style lang="scss" scoped>
 .easy-body {
-  height: 100vh;
+  height: 110vh;
   width: 100%;
   background-image: url("../assets/hard_background.png");
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   .card-container {
     display: grid;
     grid-template-columns: 180px 180px 180px 180px 180px 180px;

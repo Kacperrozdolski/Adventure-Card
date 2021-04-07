@@ -13,7 +13,7 @@
 import BasicCard from "../components/BasicCard.vue";
 import MiniLogo from "../components/MiniLogo.vue";
 export default {
-  name: "Mediummode",
+  name: "mediumMode",
   components: { BasicCard, MiniLogo },
   data() {
     return {
@@ -26,55 +26,55 @@ export default {
         if (i == 0 || i == 1) {
           this.cards.push({
             id: i,
-            value: "Piegusek",
+            value: "snakeDesert",
           });
         }
         if (i == 2 || i == 3) {
           this.cards.push({
             id: i,
-            value: "Landrynka",
+            value: "blindDesert",
           });
         }
         if (i == 4 || i == 5) {
           this.cards.push({
             id: i,
-            value: "Rożek",
+            value: "butterflyDesert",
           });
         }
         if (i == 6 || i == 7) {
           this.cards.push({
             id: i,
-            value: "Karmelek",
+            value: "cactusDesert",
           });
         }
         if (i == 8 || i == 9) {
           this.cards.push({
             id: i,
-            value: "Czekolad",
+            value: "coalDesert",
           });
         }
         if (i == 10 || i == 11) {
           this.cards.push({
             id: i,
-            value: "Miętusek",
+            value: "gigantDesert",
           });
         }
         if (i == 12 || i == 13) {
           this.cards.push({
             id: i,
-            value: "Miętusek",
+            value: "hoboDesert",
           });
         }
         if (i == 14 || i == 15) {
           this.cards.push({
             id: i,
-            value: "Miętusek",
+            value: "oldDesert",
           });
         }
         if (i == 16 || i == 17) {
           this.cards.push({
             id: i,
-            value: "Miętusek",
+            value: "ratDesert",
           });
         }
       }
@@ -92,7 +92,7 @@ export default {
   },
   mounted() {
     this.cards = [];
-    this.genereteCardDeck(12);
+    this.genereteCardDeck(14);
   },
 };
 </script>
@@ -108,7 +108,7 @@ export default {
   justify-content: center;
   .card-container {
     display: grid;
-    grid-template-columns: 180px 180px 180px 180px 180px 180px;
+    grid-template-columns: 180px 180px 180px 180px 180px 180px 180px;
     grid-template-rows: 180px 180px;
     column-gap: 20px;
     row-gap: 20px;

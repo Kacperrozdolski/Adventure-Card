@@ -6,15 +6,17 @@
         `Karta: ${card.value}`
       }}</component>
     </div>
+    <BasicFooter :icons="false" />
   </div>
 </template>
 
 <script>
 import BasicCard from "../components/BasicCard.vue";
 import MiniLogo from "../components/MiniLogo.vue";
+import BasicFooter from "../components/BasicFooter.vue";
 export default {
   name: "EasyMode",
-  components: { BasicCard, MiniLogo },
+  components: { BasicCard, MiniLogo, BasicFooter },
   data() {
     return {
       cards: [],
@@ -27,37 +29,37 @@ export default {
           if (i == 0 || i == 1) {
             this.cards.push({
               id: i,
-              value: "Piegusek",
+              value: "brownCandy",
             });
           }
           if (i == 2 || i == 3) {
             this.cards.push({
               id: i,
-              value: "Landrynka",
+              value: "chocoCandy",
             });
           }
           if (i == 4 || i == 5) {
             this.cards.push({
               id: i,
-              value: "Rożek",
+              value: "donutCandy",
             });
           }
           if (i == 6 || i == 7) {
             this.cards.push({
               id: i,
-              value: "Karmelek",
+              value: "greenCandy",
             });
           }
           if (i == 8 || i == 9) {
             this.cards.push({
               id: i,
-              value: "Czekolad",
+              value: "pinkCandy",
             });
           }
           if (i == 10 || i == 11) {
             this.cards.push({
               id: i,
-              value: "Miętusek",
+              value: "strawCandy",
             });
           }
         }
@@ -91,6 +93,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   .card-container {
     display: grid;
     grid-template-columns: 180px 180px 180px 180px;

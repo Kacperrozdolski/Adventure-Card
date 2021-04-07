@@ -2,15 +2,23 @@
   <div class="adventure-body">
     <img src="../assets/adventure-card.png" alt="" class="logo" />
     <div class="menu">
-      <div class="menu-button play" @click="play('easy')"><p>PLAY</p></div>
+      <div class="menu-button play" @click="play('back')"><p>PLAY</p></div>
       <div class="menu-button">
-        <img src="../assets/arrow.svg" class="left" />
+        <img
+          src="../assets/arrow.svg"
+          class="left"
+          @click="changeMode('back')"
+        />
         <p>{{ mode }}</p>
-        <img src="../assets/arrow.svg" class="right" />
+        <img
+          src="../assets/arrow.svg"
+          class="right"
+          @click="changeMode('forward')"
+        />
       </div>
       <div class="menu-button"><p>RANKING</p></div>
     </div>
-    <BasicFooter />
+    <BasicFooter :icons="true" />
   </div>
 </template>
 
@@ -18,15 +26,42 @@
 import BasicFooter from "../components/BasicFooter.vue";
 export default {
   name: "Home",
+  data() {
+    return { modeHandler: 1 };
+  },
   components: { BasicFooter },
   methods: {
-    play(mode) {
-      this.$router.push("/" + mode);
+    play() {
+      this.$router.push("/" + this.mode.toLowerCase());
+    },
+    changeMode(changeHandler) {
+      if (changeHandler == "forward") {
+        this.modeHandler++;
+      }
+      if (changeHandler == "back") {
+        this.modeHandler--;
+      }
+      if (this.modeHandler == 0) {
+        this.modeHandler = 3;
+      }
+      if (this.modeHandler == 4) {
+        this.modeHandler = 1;
+      }
     },
   },
   computed: {
     mode() {
-      return "EASY";
+      let mode;
+      if (this.modeHandler == 1) {
+        mode = "EASY";
+      }
+      if (this.modeHandler == 2) {
+        mode = "MEDIUM";
+      }
+      if (this.modeHandler == 3) {
+        mode = "HARD";
+      }
+      return mode;
     },
   },
 };
@@ -66,8 +101,10 @@ export default {
       p {
         font-weight: 400;
         font-size: 1.25rem;
-        margin: 0px 20px;
+        margin: 0px 10px;
         padding: 0;
+        width: 30%;
+        text-align: center;
       }
       img {
         cursor: pointer;
