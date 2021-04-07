@@ -1,5 +1,6 @@
 <template>
   <div class="easy-body">
+    <MiniLogo />
     <div class="card-container">
       <component v-for="card in cards" :key="card.id" :is="'BasicCard'">{{
         `Karta: ${card.value}`
@@ -9,10 +10,11 @@
 </template>
 
 <script>
+import MiniLogo from "../components/MiniLogo.vue";
 import BasicCard from "../components/BasicCard.vue";
 export default {
   name: "EasyMode",
-  components: { BasicCard },
+  components: { BasicCard, MiniLogo },
   data() {
     return {
       cards: [],

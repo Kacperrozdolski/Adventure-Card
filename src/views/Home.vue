@@ -1,19 +1,85 @@
 <template>
-  <div class="adventure-body"></div>
+  <div class="adventure-body">
+    <img src="../assets/adventure-card.png" alt="" class="logo" />
+    <div class="menu">
+      <div class="menu-button play" @click="play('easy')"><p>PLAY</p></div>
+      <div class="menu-button">
+        <img src="../assets/arrow.svg" class="left" />
+        <p>{{ mode }}</p>
+        <img src="../assets/arrow.svg" class="right" />
+      </div>
+      <div class="menu-button"><p>RANKING</p></div>
+    </div>
+    <BasicFooter />
+  </div>
 </template>
 
 <script>
+import BasicFooter from "../components/BasicFooter.vue";
 export default {
   name: "Home",
-  components: {},
+  components: { BasicFooter },
+  methods: {
+    play(mode) {
+      this.$router.push("/" + mode);
+    },
+  },
+  computed: {
+    mode() {
+      return "EASY";
+    },
+  },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .adventure-body {
   height: 100vh;
   width: 100%;
   background-image: url("../assets/menu_background.png");
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .logo {
+    height: 40%;
+  }
+  .menu {
+    height: 70%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .menu-button {
+      width: 35%;
+      height: 14%;
+      background: #fff;
+      border: 1px solid black;
+      border-radius: 10px;
+      margin: 20px;
+      font-family: "Titillium Web";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        font-weight: 400;
+        font-size: 1.25rem;
+        margin: 0px 20px;
+        padding: 0;
+      }
+      img {
+        cursor: pointer;
+      }
+      .right {
+        transform: rotate(180deg);
+      }
+    }
+    .play {
+      cursor: pointer;
+    }
+  }
 }
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400&display=swap");
 </style>
