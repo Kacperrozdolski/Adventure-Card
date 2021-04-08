@@ -1,16 +1,24 @@
 <template>
-  <div
-    @click="flipCard"
-    class="basic-card"
-    :style="{ background: this.cardColor }"
-    :id="id"
-  >
-    <img :src="this.url" />
+  <div class="basic-card" :id="id">
+    <vue-flip active-click width="180px" height="180px">
+      <template v-slot:front>
+        <div class="card" :style="{ background: this.cardColor }">
+          <img src="@/assets/easy/easyFront.png" />
+        </div>
+      </template>
+      <template v-slot:back class="back easy">
+        <div class="card" :style="{ background: this.cardColor }">
+          <img :src="this.url" />
+        </div>
+      </template>
+    </vue-flip>
   </div>
 </template>
 <script>
+import VueFlip from "vue-flip";
 export default {
   name: "BasicCard",
+  components: { VueFlip },
   props: ["urlPath", "gameMode", "id"],
   computed: {
     url() {
@@ -30,15 +38,6 @@ export default {
       return color;
     },
   },
-  methods: {
-    flipCard($event) {
-      if ($event.path[0].id == "") {
-        document.getElementById($event.path[1].id).classList.add("flip");
-      } else {
-        document.getElementById($event.path[0].id).classList.add("flip");
-      }
-    },
-  },
 };
 </script>
 <style lang="scss">
@@ -49,6 +48,14 @@ export default {
   img {
     height: 80%;
     width: 80%;
+  }
+  .card {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f9ecfe;
   }
 }
 </style>
