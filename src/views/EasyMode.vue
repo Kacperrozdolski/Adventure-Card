@@ -79,7 +79,6 @@ export default {
         }
       }
       this.shuffleArray(this.cards);
-      console.log(this.cards);
     },
     shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -92,12 +91,18 @@ export default {
     selected(cardId) {
       if (this.wait == false) {
         if (this.firstCard == undefined) {
-          this.firstCard = this.cards.find((card) => card.id == cardId);
-          this.firstCard.selected = true;
-        } else if (this.firstCard != undefined && this.firstCard.id != cardId) {
-          this.secondCard = this.cards.find((card) => card.id == cardId);
-          this.secondCard.selected = true;
-          this.wait = true;
+          if (this.cards.find((card) => card.id == cardId).selected == false) {
+            this.firstCard = this.cards.find((card) => card.id == cardId);
+            this.firstCard.selected = true;
+          }
+        } else if (
+          this.cards.find((card) => card.id == cardId).selected == false
+        ) {
+          if (this.firstCard != undefined && this.firstCard.id != cardId) {
+            this.secondCard = this.cards.find((card) => card.id == cardId);
+            this.secondCard.selected = true;
+            this.wait = true;
+          }
           if (this.firstCard.value == this.secondCard.value) {
             this.firstCard = null;
             this.secondCard = null;
@@ -109,7 +114,7 @@ export default {
               this.firstCard = null;
               this.secondCard = null;
               this.wait = false;
-            }, 1000);
+            }, 500);
           }
         }
       }
