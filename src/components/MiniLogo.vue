@@ -1,10 +1,5 @@
 <template>
-  <img
-    src="../assets/background/adventure-card.png"
-    alt=""
-    srcset=""
-    @click="home"
-  />
+  <img src="../assets/background/adventure-card.png" @click="home" />
 </template>
 
 <script>
@@ -23,5 +18,6 @@ img {
   left: 0px;
   top: 0px;
   height: 12%;
+  cursor: pointer;
 }
 </style>

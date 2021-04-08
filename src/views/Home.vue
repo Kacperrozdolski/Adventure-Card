@@ -1,15 +1,15 @@
 <template>
   <div class="adventure-body">
-    <img src="../assets/background/adventure-card.png" alt="" class="logo" />
+    <img src="../assets/background/adventure-card.png" class="logo" />
     <div class="menu">
-      <div class="menu-button play" @click="play('back')"><p>PLAY</p></div>
+      <div class="menu-button play" @click="play"><p>PLAY</p></div>
       <div class="menu-button">
         <img
           src="../assets/icons/arrow.svg"
           class="left"
           @click="changeMode('back')"
         />
-        <p>{{ mode }}</p>
+        <p>{{ mode.toUpperCase() }}</p>
         <img
           src="../assets/icons/arrow.svg"
           class="right"
@@ -32,7 +32,7 @@ export default {
   components: { BasicFooter },
   methods: {
     play() {
-      this.$router.push("/" + this.mode.toLowerCase());
+      this.$router.push("/" + this.mode);
     },
     changeMode(changeHandler) {
       if (changeHandler == "forward") {
@@ -53,13 +53,13 @@ export default {
     mode() {
       let mode;
       if (this.modeHandler == 1) {
-        mode = "EASY";
+        mode = "easy";
       }
       if (this.modeHandler == 2) {
-        mode = "MEDIUM";
+        mode = "medium";
       }
       if (this.modeHandler == 3) {
-        mode = "HARD";
+        mode = "hard";
       }
       return mode;
     },

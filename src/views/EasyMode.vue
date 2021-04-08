@@ -6,6 +6,7 @@
         v-for="card in cards"
         :urlPath="card.value"
         :gameMode="'easy'"
+        :id="card.id"
         :key="card.id"
         :is="'BasicCard'"
         >{{ `Karta: ${card.value}` }}</component
