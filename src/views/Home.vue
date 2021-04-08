@@ -1,17 +1,17 @@
 <template>
   <div class="adventure-body">
-    <img src="../assets/adventure-card.png" alt="" class="logo" />
+    <img src="../assets/background/adventure-card.png" alt="" class="logo" />
     <div class="menu">
       <div class="menu-button play" @click="play('back')"><p>PLAY</p></div>
       <div class="menu-button">
         <img
-          src="../assets/arrow.svg"
+          src="../assets/icons/arrow.svg"
           class="left"
           @click="changeMode('back')"
         />
         <p>{{ mode }}</p>
         <img
-          src="../assets/arrow.svg"
+          src="../assets/icons/arrow.svg"
           class="right"
           @click="changeMode('forward')"
         />

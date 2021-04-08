@@ -2,9 +2,14 @@
   <div class="easy-body">
     <MiniLogo />
     <div class="card-container">
-      <component v-for="card in cards" :key="card.id" :is="'BasicCard'">{{
-        `Karta: ${card.value}`
-      }}</component>
+      <component
+        v-for="card in cards"
+        :key="card.id"
+        :urlPath="card.value"
+        :gameMode="'medium'"
+        :is="'BasicCard'"
+        >{{ `Karta: ${card.value}` }}</component
+      >
     </div>
   </div>
 </template>

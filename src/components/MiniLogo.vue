@@ -1,5 +1,10 @@
 <template>
-  <img src="../assets/adventure-card.png" alt="" srcset="" @click="home" />
+  <img
+    src="../assets/background/adventure-card.png"
+    alt=""
+    srcset=""
+    @click="home"
+  />
 </template>
 
 <script>
