@@ -1,6 +1,6 @@
 <template>
   <div class="basic-card" :id="id">
-    <vue-flip @click="flip" width="180px" height="180px" v-model="flipped">
+    <vue-flip width="180px" height="180px" v-model="selectedHandler">
       <template v-slot:front>
         <div class="card" :style="{ background: this.cardColor }">
           <img src="@/assets/easy/easyFront.png" />
@@ -19,18 +19,17 @@ import VueFlip from "vue-flip";
 export default {
   name: "BasicCard",
   components: { VueFlip },
-  props: ["urlPath", "gameMode", "id"],
-  data() {
-    return {
-      flipped: false,
-    };
-  },
-  methods: {
-    flip() {
-      this.flipped = !this.flipped;
-    },
-  },
+  props: ["urlPath", "gameMode", "id", "selected"],
   computed: {
+    selectedHandler() {
+      let handler;
+      if (this.selected == true) {
+        handler = true;
+      } else if (this.selected == false) {
+        handler = false;
+      }
+      return handler;
+    },
     url() {
       return require(`@/assets/${this.gameMode}/${this.urlPath}.png`);
     },

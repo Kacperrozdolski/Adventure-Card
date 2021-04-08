@@ -9,7 +9,8 @@
         :id="card.id"
         :key="card.id"
         :is="'BasicCard'"
-        @click="selected(card.value, card.id)"
+        :selected="card.selected"
+        @click="selected(card.id)"
       ></component>
     </div>
     <BasicFooter :icons="false" />
@@ -26,8 +27,9 @@ export default {
   data() {
     return {
       cards: [],
-      firstSelected: null,
-      firstSelectedId: null,
+      firstCard: undefined,
+      secondCard: undefined,
+      wait: false,
     };
   },
   methods: {
@@ -37,40 +39,47 @@ export default {
           this.cards.push({
             id: i,
             value: "brownCandy",
+            selected: false,
           });
         }
         if (i == 2 || i == 3) {
           this.cards.push({
             id: i,
             value: "chocoCandy",
+            selected: false,
           });
         }
         if (i == 4 || i == 5) {
           this.cards.push({
             id: i,
             value: "donutCandy",
+            selected: false,
           });
         }
         if (i == 6 || i == 7) {
           this.cards.push({
             id: i,
             value: "greenCandy",
+            selected: false,
           });
         }
         if (i == 8 || i == 9) {
           this.cards.push({
             id: i,
             value: "pinkCandy",
+            selected: false,
           });
         }
         if (i == 10 || i == 11) {
           this.cards.push({
             id: i,
             value: "strawCandy",
+            selected: false,
           });
         }
       }
       this.shuffleArray(this.cards);
+      console.log(this.cards);
     },
     shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -80,25 +89,27 @@ export default {
         array[j] = temp;
       }
     },
-    selected(selectedCard, cardId) {
-      if (this.firstSelected == null) {
-        this.firstSelected = selectedCard;
-        this.firstSelectedId = cardId;
-      } else {
-        if (this.firstSelectedId != cardId) {
-          if (this.firstSelected == selectedCard) {
-            console.log(
-              "to jest para, zostaw karty o id" +
-                this.firstSelectedId +
-                " " +
-                cardId
-            );
-            this.firstSelected = null;
-            this.firstSelectedId = null;
+    selected(cardId) {
+      if (this.wait == false) {
+        if (this.firstCard == undefined) {
+          this.firstCard = this.cards.find((card) => card.id == cardId);
+          this.firstCard.selected = true;
+        } else if (this.firstCard != undefined && this.firstCard.id != cardId) {
+          this.secondCard = this.cards.find((card) => card.id == cardId);
+          this.secondCard.selected = true;
+          this.wait = true;
+          if (this.firstCard.value == this.secondCard.value) {
+            this.firstCard = null;
+            this.secondCard = null;
+            this.wait = false;
           } else {
-            console.log("to nie para, zakryj karty");
-            this.firstSelected = null;
-            this.firstSelectedId = null;
+            setTimeout(() => {
+              this.firstCard.selected = false;
+              this.secondCard.selected = false;
+              this.firstCard = null;
+              this.secondCard = null;
+              this.wait = false;
+            }, 1000);
           }
         }
       }
