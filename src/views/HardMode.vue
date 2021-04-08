@@ -102,7 +102,7 @@ export default {
 .easy-body {
   height: 110vh;
   width: 100%;
-  background-image: url("../assets/hard_background.png");
+  background-image: url("../assets/background/hard_background.png");
   background-size: cover;
   display: flex;
   align-items: center;

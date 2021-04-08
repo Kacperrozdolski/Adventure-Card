@@ -101,7 +101,7 @@ export default {
 .easy-body {
   height: 100vh;
   width: 100%;
-  background-image: url("../assets/medium_background.png");
+  background-image: url("../assets/background/medium_background.png");
   background-size: cover;
   display: flex;
   align-items: center;

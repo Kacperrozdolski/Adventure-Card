@@ -23,48 +23,46 @@ export default {
     };
   },
   methods: {
-    genereteCardDeck(mode) {
-      if (mode == "easy") {
-        for (let i = 0; i < 12; i++) {
-          if (i == 0 || i == 1) {
-            this.cards.push({
-              id: i,
-              value: "brownCandy",
-            });
-          }
-          if (i == 2 || i == 3) {
-            this.cards.push({
-              id: i,
-              value: "chocoCandy",
-            });
-          }
-          if (i == 4 || i == 5) {
-            this.cards.push({
-              id: i,
-              value: "donutCandy",
-            });
-          }
-          if (i == 6 || i == 7) {
-            this.cards.push({
-              id: i,
-              value: "greenCandy",
-            });
-          }
-          if (i == 8 || i == 9) {
-            this.cards.push({
-              id: i,
-              value: "pinkCandy",
-            });
-          }
-          if (i == 10 || i == 11) {
-            this.cards.push({
-              id: i,
-              value: "strawCandy",
-            });
-          }
+    genereteCardDeck(num) {
+      for (let i = 0; i < num; i++) {
+        if (i == 0 || i == 1) {
+          this.cards.push({
+            id: i,
+            value: "brownCandy",
+          });
         }
-        this.shuffleArray(this.cards);
+        if (i == 2 || i == 3) {
+          this.cards.push({
+            id: i,
+            value: "chocoCandy",
+          });
+        }
+        if (i == 4 || i == 5) {
+          this.cards.push({
+            id: i,
+            value: "donutCandy",
+          });
+        }
+        if (i == 6 || i == 7) {
+          this.cards.push({
+            id: i,
+            value: "greenCandy",
+          });
+        }
+        if (i == 8 || i == 9) {
+          this.cards.push({
+            id: i,
+            value: "pinkCandy",
+          });
+        }
+        if (i == 10 || i == 11) {
+          this.cards.push({
+            id: i,
+            value: "strawCandy",
+          });
+        }
       }
+      this.shuffleArray(this.cards);
     },
     shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -77,8 +75,7 @@ export default {
     },
   },
   mounted() {
-    this.cards = [];
-    this.genereteCardDeck("easy");
+    this.genereteCardDeck(12);
   },
 };
 </script>
@@ -88,7 +85,7 @@ export default {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-image: url("../assets/easy_background.png");
+  background-image: url("../assets/background/easy_background.png");
   background-size: cover;
   display: flex;
   align-items: center;

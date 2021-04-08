@@ -71,7 +71,7 @@ export default {
 .adventure-body {
   height: 100vh;
   width: 100%;
-  background-image: url("../assets/menu_background.png");
+  background-image: url("../assets/background/menu_background.png");
   background-size: cover;
   display: flex;
   justify-content: center;

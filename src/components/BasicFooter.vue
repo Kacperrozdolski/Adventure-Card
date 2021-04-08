@@ -2,14 +2,16 @@
   <div class="footer-container">
     <p>copyright © 2021 kacper rozdolski. all rights reserved.</p>
     <div class="footer-wrapper" v-if="icons">
-      <a href="mailto:leopoldsinx@gmail.com"><img src="@/assets/mail.svg" /></a>
+      <a href="mailto:leopoldsinx@gmail.com"
+        ><img src="@/assets/icons/mail.svg"
+      /></a>
       <a
         href="https://www.linkedin.com/in/kacper-rozdolski-ba6a4715b/"
         target="_blank"
-        ><img src="@/assets/linkedin.svg"
+        ><img src="@/assets/icons/linkedin.svg"
       /></a>
       <a href="https://github.com/Kacperrozdolski" target="_blank"
-        ><img src="@/assets/github.svg"
+        ><img src="@/assets/icons/github.svg"
       /></a>
     </div>
   </div>
