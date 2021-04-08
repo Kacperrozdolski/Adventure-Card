@@ -22,13 +22,7 @@ export default {
   props: ["urlPath", "gameMode", "id", "selected"],
   computed: {
     selectedHandler() {
-      let handler;
-      if (this.selected == true) {
-        handler = true;
-      } else if (this.selected == false) {
-        handler = false;
-      }
-      return handler;
+      return this.selected;
     },
     url() {
       return require(`@/assets/${this.gameMode}/${this.urlPath}.png`);

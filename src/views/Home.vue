@@ -2,18 +2,18 @@
   <div class="adventure-body">
     <img src="../assets/background/adventure-card.png" class="logo" />
     <div class="menu">
-      <div class="menu-button play" @click="play"><p>PLAY</p></div>
+      <div class="menu-button play" @click="redirectToGame"><p>PLAY</p></div>
       <div class="menu-button">
         <img
           src="../assets/icons/arrow.svg"
           class="left"
-          @click="changeMode('back')"
+          @click="changeLevel('back')"
         />
-        <p>{{ mode.toUpperCase() }}</p>
+        <p>{{ level.name.toUpperCase() }}</p>
         <img
           src="../assets/icons/arrow.svg"
           class="right"
-          @click="changeMode('forward')"
+          @click="changeLevel('forward')"
         />
       </div>
       <div class="menu-button"><p>RANKING</p></div>
@@ -24,44 +24,35 @@
 
 <script>
 import BasicFooter from "../components/BasicFooter.vue";
+import { levels } from "../utils/gameConfig";
+
 export default {
   name: "Home",
   data() {
-    return { modeHandler: 1 };
+    return {
+      currentLevel: 0,
+      level: { name: "easy", numberOfCards: 12 },
+    };
   },
   components: { BasicFooter },
   methods: {
-    play() {
-      this.$router.push("/" + this.mode);
+    redirectToGame() {
+      this.$router.push(
+        `/game?level=${this.level.name}&numberOfCards=${this.level.numberOfCards}`
+      );
     },
-    changeMode(changeHandler) {
-      if (changeHandler == "forward") {
-        this.modeHandler++;
+    changeLevel(direction) {
+      direction == "forward" ? this.currentLevel++ : this.currentLevel--;
+      this.level = levels[this.currentLevel];
+
+      if (this.currentLevel < 0) {
+        this.currentLevel = levels.length;
+        this.level = levels[levels.length - 1];
       }
-      if (changeHandler == "back") {
-        this.modeHandler--;
+      if (this.currentLevel > levels.length) {
+        this.currentLevel = 0;
+        this.level = levels[0];
       }
-      if (this.modeHandler == 0) {
-        this.modeHandler = 3;
-      }
-      if (this.modeHandler == 4) {
-        this.modeHandler = 1;
-      }
-    },
-  },
-  computed: {
-    mode() {
-      let mode;
-      if (this.modeHandler == 1) {
-        mode = "easy";
-      }
-      if (this.modeHandler == 2) {
-        mode = "medium";
-      }
-      if (this.modeHandler == 3) {
-        mode = "hard";
-      }
-      return mode;
     },
   },
 };
