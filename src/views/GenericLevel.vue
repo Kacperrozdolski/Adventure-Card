@@ -1,5 +1,5 @@
 <template>
-  <div class="easy-body">
+  <div :class="`level-container level-container--${levelSettings.name}`">
     <nav>
       <div class="logo"><MiniLogo /></div>
       <div class="timer">
@@ -7,14 +7,14 @@
       </div>
       <div class="score">score:{{ Math.floor(score) }}</div>
     </nav>
-    <div class="card-container">
+    <div
+      :class="`level-container__cards level-container__cards--${levelSettings.name}`"
+    >
       <BasicCard
         v-for="card in cards"
-        :urlPath="card.value"
-        :gameMode="'easy'"
-        :id="card.id"
+        :card="card"
+        :levelSettings="levelSettings"
         :key="card.id"
-        :selected="card.selected"
         @click="selectCard(card)"
       ></BasicCard>
     </div>
@@ -26,11 +26,11 @@
 import BasicCard from "../components/BasicCard.vue";
 import MiniLogo from "../components/MiniLogo.vue";
 import BasicFooter from "../components/BasicFooter.vue";
-import { genereteCardDeck } from "../utils/generalUtils";
+import { generateCardDeck } from "../utils/generalUtils";
 export default {
   name: "GenericLevel",
   components: { BasicCard, MiniLogo, BasicFooter },
-  props: ["deck", "level", "numberOfCards"],
+  props: ["levelSettings"],
   data() {
     return {
       cards: [],
@@ -95,7 +95,11 @@ export default {
     },
   },
   mounted() {
-    this.cards = genereteCardDeck(this.numberOfCards, this.deck, this.cards);
+    this.cards = generateCardDeck(
+      this.levelSettings.numberOfCards,
+      this.levelSettings.icons,
+      this.cards
+    );
   },
   watch: {
     gameFinished() {
@@ -107,16 +111,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.easy-body {
+.level-container {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-image: url("../assets/background/easy_background.png");
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  &--easy {
+    background-image: url("../assets/background/easy_background.png");
+  }
+  &--medium {
+    background-image: url("../assets/background/medium_background.png");
+  }
+  &--hard {
+    background-image: url("../assets/background/hard_background.png");
+  }
   nav {
     width: 100%;
     height: 100%;
@@ -153,11 +165,18 @@ export default {
       justify-content: center;
     }
   }
-  .card-container {
+  &__cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
     grid-gap: 20px;
+    &--easy {
+      grid-template: repeat(3, 1fr) / repeat(4, 1fr);
+    }
+    &--medium {
+      grid-template: repeat(2, 1fr) / repeat(4, 1fr);
+    }
+    &--hard {
+      grid-template: repeat(3, 1fr) / repeat(6, 1fr);
+    }
   }
 }
 </style>

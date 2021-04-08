@@ -1,13 +1,13 @@
 <template>
-  <div class="basic-card" :id="id">
+  <div class="basic-card" :id="card.id">
     <vue-flip width="180px" height="180px" v-model="selectedHandler">
       <template v-slot:front>
-        <div class="card" :style="{ background: this.cardColor }">
+        <div class="card" :style="{ background: this.levelSettings.color }">
           <img src="@/assets/easy/easyFront.png" />
         </div>
       </template>
       <template v-slot:back class="back easy">
-        <div class="card" :style="{ background: this.cardColor }">
+        <div class="card" :style="{ background: this.levelSettings.color }">
           <img :src="this.url" />
         </div>
       </template>
@@ -19,26 +19,13 @@ import VueFlip from "vue-flip";
 export default {
   name: "BasicCard",
   components: { VueFlip },
-  props: ["urlPath", "gameMode", "id", "selected"],
+  props: ["card", "levelSettings"],
   computed: {
     selectedHandler() {
-      return this.selected;
+      return this.card.selected;
     },
     url() {
-      return require(`@/assets/${this.gameMode}/${this.urlPath}.png`);
-    },
-    cardColor() {
-      let color;
-      if (this.gameMode == "easy") {
-        color = "#F9ECFE";
-      }
-      if (this.gameMode == "medium") {
-        color = "#C3955C";
-      }
-      if (this.gameMode == "hard") {
-        color = "#8F8F8F";
-      }
-      return color;
+      return require(`@/assets/${this.levelSettings.name}/${this.card.value}.png`);
     },
   },
 };

@@ -31,15 +31,16 @@ export default {
   data() {
     return {
       currentLevel: 0,
-      level: { name: "easy", numberOfCards: 12 },
+      level: {
+        name: "easy",
+        numberOfCards: 12,
+      },
     };
   },
   components: { BasicFooter },
   methods: {
     redirectToGame() {
-      this.$router.push(
-        `/game?level=${this.level.name}&numberOfCards=${this.level.numberOfCards}`
-      );
+      this.$router.push(`/game?level=${this.level.name}`);
     },
     changeLevel(direction) {
       direction == "forward" ? this.currentLevel++ : this.currentLevel--;
