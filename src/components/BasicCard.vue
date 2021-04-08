@@ -1,6 +1,6 @@
 <template>
   <div class="basic-card" :id="id">
-    <vue-flip active-click width="180px" height="180px">
+    <vue-flip @click="flip" width="180px" height="180px" v-model="flipped">
       <template v-slot:front>
         <div class="card" :style="{ background: this.cardColor }">
           <img src="@/assets/easy/easyFront.png" />
@@ -20,6 +20,16 @@ export default {
   name: "BasicCard",
   components: { VueFlip },
   props: ["urlPath", "gameMode", "id"],
+  data() {
+    return {
+      flipped: false,
+    };
+  },
+  methods: {
+    flip() {
+      this.flipped = !this.flipped;
+    },
+  },
   computed: {
     url() {
       return require(`@/assets/${this.gameMode}/${this.urlPath}.png`);
@@ -45,6 +55,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   img {
     height: 80%;
     width: 80%;

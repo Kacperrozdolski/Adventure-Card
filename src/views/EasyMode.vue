@@ -9,8 +9,8 @@
         :id="card.id"
         :key="card.id"
         :is="'BasicCard'"
-        >{{ `Karta: ${card.value}` }}</component
-      >
+        @click="selected(card.value, card.id)"
+      ></component>
     </div>
     <BasicFooter :icons="false" />
   </div>
@@ -26,6 +26,8 @@ export default {
   data() {
     return {
       cards: [],
+      firstSelected: null,
+      firstSelectedId: null,
     };
   },
   methods: {
@@ -77,7 +79,29 @@ export default {
         array[i] = array[j];
         array[j] = temp;
       }
-      console.log(this.cards);
+    },
+    selected(selectedCard, cardId) {
+      if (this.firstSelected == null) {
+        this.firstSelected = selectedCard;
+        this.firstSelectedId = cardId;
+      } else {
+        if (this.firstSelectedId != cardId) {
+          if (this.firstSelected == selectedCard) {
+            console.log(
+              "to jest para, zostaw karty o id" +
+                this.firstSelectedId +
+                " " +
+                cardId
+            );
+            this.firstSelected = null;
+            this.firstSelectedId = null;
+          } else {
+            console.log("to nie para, zakryj karty");
+            this.firstSelected = null;
+            this.firstSelectedId = null;
+          }
+        }
+      }
     },
   },
   mounted() {
