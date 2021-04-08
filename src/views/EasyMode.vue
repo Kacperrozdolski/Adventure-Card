@@ -1,6 +1,12 @@
 <template>
   <div class="easy-body">
-    <MiniLogo />
+    <nav>
+      <div class="logo"><MiniLogo /></div>
+      <div class="timer">
+        <p>{{ formattedElapsedTime }}</p>
+      </div>
+      <div class="score">score:{{ Math.floor(score) }}</div>
+    </nav>
     <div class="card-container">
       <component
         v-for="card in cards"
@@ -30,6 +36,10 @@ export default {
       firstCard: undefined,
       secondCard: undefined,
       wait: false,
+      multiplier: 1,
+      score: 0,
+      elapsedTime: 0,
+      timer: undefined,
     };
   },
   methods: {
@@ -89,6 +99,9 @@ export default {
       }
     },
     selected(cardId) {
+      if (this.timer == undefined) {
+        this.startTimer();
+      }
       if (this.wait == false) {
         if (this.firstCard == undefined) {
           if (this.cards.find((card) => card.id == cardId).selected == false) {
@@ -106,22 +119,61 @@ export default {
           if (this.firstCard.value == this.secondCard.value) {
             this.firstCard = null;
             this.secondCard = null;
+            this.multiplier = this.multiplier + 1;
             this.wait = false;
+            this.score =
+              this.score +
+              100 * (this.multiplier * this.multiplier) +
+              this.score / 3;
+            console.log(Math.floor(this.score));
           } else {
             setTimeout(() => {
               this.firstCard.selected = false;
               this.secondCard.selected = false;
               this.firstCard = null;
               this.secondCard = null;
+              this.multiplier = 1;
               this.wait = false;
             }, 500);
           }
         }
       }
     },
+    startTimer() {
+      this.timer = setInterval(() => {
+        this.elapsedTime += 1000;
+      }, 1000);
+    },
+    stopTimer() {
+      clearInterval(this.timer);
+    },
+  },
+  computed: {
+    formattedElapsedTime() {
+      const date = new Date(null);
+      date.setSeconds(this.elapsedTime / 1000);
+      const utc = date.toUTCString();
+      return utc.substr(20, 5);
+    },
+    gameFinished() {
+      let gameEnd;
+      let isBelowThreshold = (currentValue) => currentValue.selected == true;
+      if (this.cards.every(isBelowThreshold)) {
+        gameEnd = true;
+      } else {
+        gameEnd = false;
+      }
+      return gameEnd;
+    },
   },
   mounted() {
     this.genereteCardDeck(12);
+  },
+  watch: {
+    gameFinished() {
+      this.score = this.score * (2 - this.elapsedTime / 100000);
+      this.stopTimer();
+    },
   },
 };
 </script>
@@ -137,12 +189,47 @@ export default {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 3rem;
+    font-family: Poppins;
+    .logo {
+      width: 25%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .timer {
+      font-weight: 800;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        margin: 0;
+      }
+    }
+    .score {
+      width: 25%;
+      height: 100%;
+      display: flex;
+      font-weight: 100;
+      align-items: center;
+      justify-content: center;
+    }
+  }
   .card-container {
     display: grid;
-    grid-template-columns: 180px 180px 180px 180px;
-    grid-template-rows: 180px 180px 180px;
-    column-gap: 20px;
-    row-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 20px;
   }
 }
 </style>
