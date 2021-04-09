@@ -63,8 +63,8 @@ export default {
           this.isLoading = true;
           if (this.firstCard.value == this.secondCard.value) {
             resetCards();
-            ++this.multiplier;
             this.score += 100 * this.multiplier ** 2 + this.score / 3;
+            ++this.multiplier;
           } else {
             setTimeout(() => {
               this.firstCard.selected = false;
@@ -105,7 +105,8 @@ export default {
   },
   watch: {
     gameFinished() {
-      this.score = this.score * (2 - this.elapsedTime / 100000);
+      this.$store.dispatch("getRanking");
+      this.score = this.score * Math.abs(this.elapsedTime / 10000 - 5);
       this.stopTimer();
     },
   },

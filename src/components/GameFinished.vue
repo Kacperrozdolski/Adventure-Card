@@ -31,7 +31,7 @@ export default {
   name: "GameFinished",
   props: ["score"],
   data() {
-    return { array: [], recived: false };
+    return { array: [], recived: false, userName: "" };
   },
   computed: {
     rank() {
@@ -39,7 +39,6 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("getRanking");
     this.array.push(this.score);
     for (let i = 0; i < this.$store.state.ranking.length; i++) {
       this.array.push(this.$store.state.ranking[i].SCORE);
@@ -48,9 +47,12 @@ export default {
   },
   methods: {
     setNewScore() {
-      console.log(this.$store.state.ranking.length);
-      let id = this.$store.state.ranking[this.$store.state.ranking.length - 1]
-        .ID;
+      let id;
+      if (this.$store.state.ranking.length == 0) {
+        id = 0;
+      } else {
+        id = this.$store.state.ranking[this.$store.state.ranking.length - 1].ID;
+      }
       let data = {
         id: ++id,
         name: this.userName,
@@ -173,15 +175,13 @@ export default {
         align-items: center;
         justify-content: center;
       }
-      button:hover {
-        background: rgb(221, 221, 221);
-      }
       .recived {
         width: 35%;
         cursor: pointer;
         outline: none;
         height: 15%;
-        border: 1px solid black;
+        color: rgb(177, 177, 177);
+        border: 1px solid rgb(177, 177, 177);
         border-radius: 10px;
         margin: 20px;
         font-family: "Titillium Web";
