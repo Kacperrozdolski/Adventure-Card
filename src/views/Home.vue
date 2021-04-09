@@ -2,7 +2,9 @@
   <div class="adventure-body">
     <img src="../assets/background/adventure-card.png" class="logo" />
     <div class="menu">
-      <div class="menu-button play" @click="redirectToGame"><p>PLAY</p></div>
+      <div class="menu-button play" @click="redirectToGame">
+        <p>PLAY</p>
+      </div>
       <div class="menu-button">
         <img
           src="../assets/icons/arrow.svg"
@@ -39,13 +41,15 @@ export default {
   },
   components: { BasicFooter },
   mounted() {
-    return {};
+    let data = { id: 1, name: "Kacper", score: 12331 };
+    this.$store.dispatch("setNewScore", data);
   },
   methods: {
     redirectToGame() {
       this.$router.push(`/game?level=${this.level.name}`);
     },
     changeLevel(direction) {
+      console.log(this.$store.state.ranking);
       direction == "forward" ? this.currentLevel++ : this.currentLevel--;
       this.level = levels[this.currentLevel];
 
