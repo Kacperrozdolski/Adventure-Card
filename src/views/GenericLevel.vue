@@ -1,5 +1,6 @@
 <template>
   <div :class="`level-container level-container--${levelSettings.name}`">
+    <GameFinished v-if="gameFinished" :score="score" />
     <nav>
       <div class="logo"><MiniLogo /></div>
       <div class="timer">
@@ -24,12 +25,13 @@
 
 <script>
 import BasicCard from "../components/BasicCard.vue";
+import GameFinished from "../components/GameFinished.vue";
 import MiniLogo from "../components/MiniLogo.vue";
 import BasicFooter from "../components/BasicFooter.vue";
 import { generateCardDeck } from "../utils/generalUtils";
 export default {
   name: "GenericLevel",
-  components: { BasicCard, MiniLogo, BasicFooter },
+  components: { BasicCard, MiniLogo, BasicFooter, GameFinished },
   props: ["levelSettings"],
   data() {
     return {
@@ -129,6 +131,7 @@ export default {
   &--hard {
     background-image: url("../assets/background/hard_background.png");
   }
+
   nav {
     width: 100%;
     height: 100%;

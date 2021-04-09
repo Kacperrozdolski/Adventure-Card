@@ -38,6 +38,9 @@ export default {
     };
   },
   components: { BasicFooter },
+  mounted() {
+    return {};
+  },
   methods: {
     redirectToGame() {
       this.$router.push(`/game?level=${this.level.name}`);
@@ -110,5 +113,4 @@ export default {
     }
   }
 }
-@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400&display=swap");
 </style>
