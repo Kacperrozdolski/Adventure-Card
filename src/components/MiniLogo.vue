@@ -16,8 +16,7 @@ export default {
 img {
   position: absolute;
   left: 0px;
-  top: 0px;
-  height: 12%;
+  height: 70%;
   cursor: pointer;
 }
 </style>

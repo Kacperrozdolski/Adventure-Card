@@ -115,12 +115,11 @@ export default {
 <style lang="scss" scoped>
 .level-container {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   background-size: cover;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   &--easy {
     background-image: url("../assets/background/easy_background.png");
@@ -134,16 +133,17 @@ export default {
 
   nav {
     width: 100%;
-    height: 100%;
+    height: 20%;
     display: flex;
     justify-content: space-between;
+    position: relative;
     align-items: center;
     color: white;
     font-size: 3rem;
     font-family: Poppins;
     .logo {
       width: 25%;
-      height: 100%;
+      height: 20vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -171,11 +171,12 @@ export default {
   &__cards {
     display: grid;
     grid-gap: 20px;
+    margin: auto 0;
     &--easy {
       grid-template: repeat(3, 1fr) / repeat(4, 1fr);
     }
     &--medium {
-      grid-template: repeat(2, 1fr) / repeat(4, 1fr);
+      grid-template: repeat(2, 1fr) / repeat(8, 1fr);
     }
     &--hard {
       grid-template: repeat(3, 1fr) / repeat(6, 1fr);

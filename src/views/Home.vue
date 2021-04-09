@@ -65,14 +65,18 @@ export default {
 .adventure-body {
   height: 100vh;
   width: 100%;
-  background-image: url("../assets/background/menu_background.png");
+  background-image: url("../assets/background/menu_background.gif");
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
+  position: relative;
   .logo {
-    height: 40%;
+    height: 40vh;
+    max-width: 100%;
+    z-index: 2;
   }
   .menu {
     height: 70%;
@@ -81,8 +85,9 @@ export default {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    z-index: 2;
     .menu-button {
-      width: 35%;
+      width: 35vh;
       height: 14%;
       background: #fff;
       border: 1px solid black;

@@ -1,6 +1,6 @@
 <template>
   <div class="basic-card" :id="card.id">
-    <vue-flip width="180px" height="180px" v-model="selectedHandler">
+    <vue-flip width="155px" height="155px" v-model="selectedHandler">
       <template v-slot:front>
         <div class="card" :style="{ background: this.levelSettings.color }">
           <img :src="this.cardImageUrl" />
@@ -44,8 +44,8 @@ export default {
     width: 80%;
   }
   .card {
-    width: 180px;
-    height: 180px;
+    width: 155px;
+    height: 155px;
     display: flex;
     justify-content: center;
     align-items: center;
