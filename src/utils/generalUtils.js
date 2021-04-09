@@ -9,7 +9,6 @@ export const shuffleArray = (array) => {
 };
 
 export const generateCardDeck = (num, deck, cards) => {
-  console.log(num, deck, cards);
   for (let i = 0; i < num / 2; i++) {
     let rest = { value: deck[i], selected: false };
     cards.push({ id: i, ...rest }, { id: i + num / 2, ...rest });

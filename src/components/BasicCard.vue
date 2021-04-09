@@ -3,7 +3,7 @@
     <vue-flip width="180px" height="180px" v-model="selectedHandler">
       <template v-slot:front>
         <div class="card" :style="{ background: this.levelSettings.color }">
-          <img src="@/assets/easy/easyFront.png" />
+          <img :src="this.cardImageUrl" />
         </div>
       </template>
       <template v-slot:back class="back easy">
@@ -26,6 +26,9 @@ export default {
     },
     url() {
       return require(`@/assets/${this.levelSettings.name}/${this.card.value}.png`);
+    },
+    cardImageUrl() {
+      return require(`@/assets/${this.levelSettings.name}/${this.levelSettings.name}Front.png`);
     },
   },
 };

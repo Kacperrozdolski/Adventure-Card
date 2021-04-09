@@ -40,24 +40,19 @@ export default {
     };
   },
   components: { BasicFooter },
-  mounted() {
-    let data = { id: 1, name: "Kacper", score: 12331 };
-    this.$store.dispatch("setNewScore", data);
-  },
   methods: {
     redirectToGame() {
       this.$router.push(`/game?level=${this.level.name}`);
     },
     changeLevel(direction) {
-      console.log(this.$store.state.ranking);
       direction == "forward" ? this.currentLevel++ : this.currentLevel--;
       this.level = levels[this.currentLevel];
 
       if (this.currentLevel < 0) {
-        this.currentLevel = levels.length;
+        this.currentLevel = levels.length - 1;
         this.level = levels[levels.length - 1];
       }
-      if (this.currentLevel > levels.length) {
+      if (this.currentLevel > levels.length - 1) {
         this.currentLevel = 0;
         this.level = levels[0];
       }

@@ -7,13 +7,20 @@
       <img src="../assets/easy/strawCandy.png" class="strawCandy" />
       <h1>YOUR SCORE</h1>
       <div class="level-finished-score">
-        <span>{{ Math.floor(score) }}</span>
-        <h2>Rank: 8</h2>
+        <span @click="asd">{{ Math.floor(score) }}</span>
+        <h2>Rank: {{ rank }}</h2>
       </div>
-      <input type="text" placeholder="Your name" />
+      <input
+        type="text"
+        v-model="userName"
+        placeholder="Your name"
+        @keyup.enter="setNewScore"
+      />
       <div class="scoreboard-menu">
-        <button>SAVE</button><button>PLAY AGAIN</button
-        ><button>MAIN MENU</button>
+        <button v-if="!recived" @click="setNewScore">SAVE</button
+        ><button v-if="recived" class="recived">SAVED</button>
+        <button @click="playAgain">PLAY AGAIN</button
+        ><button @click="redirectToMainMenu">MAIN MENU</button>
       </div>
     </div>
   </div>
@@ -23,6 +30,42 @@
 export default {
   name: "GameFinished",
   props: ["score"],
+  data() {
+    return { array: [], recived: false };
+  },
+  computed: {
+    rank() {
+      return this.array.indexOf(this.score) + 1;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("getRanking");
+    this.array.push(this.score);
+    for (let i = 0; i < this.$store.state.ranking.length; i++) {
+      this.array.push(this.$store.state.ranking[i].SCORE);
+    }
+    this.array.sort((a, b) => b - a);
+  },
+  methods: {
+    setNewScore() {
+      console.log(this.$store.state.ranking.length);
+      let id = this.$store.state.ranking[this.$store.state.ranking.length - 1]
+        .ID;
+      let data = {
+        id: ++id,
+        name: this.userName,
+        score: Math.floor(this.score),
+      };
+      this.$store.dispatch("setNewScore", data);
+      this.recived = true;
+    },
+    playAgain() {
+      this.$router.go();
+    },
+    redirectToMainMenu() {
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 
@@ -129,6 +172,23 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+      button:hover {
+        background: rgb(221, 221, 221);
+      }
+      .recived {
+        width: 35%;
+        cursor: pointer;
+        outline: none;
+        height: 15%;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: 20px;
+        font-family: "Titillium Web";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: default;
       }
     }
   }
