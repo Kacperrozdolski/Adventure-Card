@@ -37,7 +37,7 @@ export default {
   mounted() {
     this.array.push(this.score);
     for (let i = 0; i < this.$store.state.ranking.length; i++) {
-      this.array.push(this.$store.state.ranking[i].SCORE);
+      this.array.push(this.$store.state.ranking[i].score);
     }
     this.array.sort((a, b) => b - a);
   },

@@ -1,24 +1,47 @@
 <template>
   <BasicPopup>
     <h1>RANKING</h1>
-    <div @click="asd" class="ranking-container"></div>
-    <button>asdas</button>
+    <div @click="asd" class="ranking-container">
+      <RankingQuery
+        v-for="query in ranking"
+        :key="query[0]"
+        :position="query[0]"
+        :name="query[1]"
+        :score="query[2]"
+      />
+    </div>
+    <button @click="redirectToMenu">Main menu</button>
   </BasicPopup>
 </template>
 
 <script>
 import BasicPopup from "../components/BasicPopup";
+import RankingQuery from "../components/RankingQuery";
 export default {
   name: "Ranking",
-  components: { BasicPopup },
+  components: { BasicPopup, RankingQuery },
   data() {
     return {
       ranking: [],
     };
   },
+  mounted() {
+    let array = this.$store.state.ranking;
+    let number = this.$store.state.ranking.length + 1;
+    for (let items in array) {
+      this.ranking.push([
+        --number,
+        this.$store.state.ranking[items].name,
+        this.$store.state.ranking[items].score,
+      ]);
+    }
+    console.log(this.ranking);
+    this.ranking.sort((a, b) => b[2] - a[2]);
+    console.log(this.ranking);
+  },
   methods: {
-    asd() {
-      console.log(this.$store.state.ranking);
+    redirectToMenu() {
+      this.$router.go("/");
     },
   },
 };
@@ -66,11 +89,22 @@ h1 {
 .ranking-container {
   height: 65%;
   width: 90%;
-  margin-bottom: auto;
   font-family: "Poppins";
   overflow-y: scroll;
+  transform: translate(5px, 0);
 }
 button {
-  margin-bottom: auto;
+  width: 35%;
+  cursor: pointer;
+  outline: none;
+  height: 40px;
+  background: #fff;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 20px;
+  font-family: "Titillium Web";
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
