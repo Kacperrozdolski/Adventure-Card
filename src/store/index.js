@@ -3,7 +3,7 @@ import axios from "axios";
 export default createStore({
   state: {
     ranking: [],
-    status: "",
+    status: null,
   },
   mutations: {
     SET_RANKING(state, ranking) {
@@ -37,9 +37,9 @@ export default createStore({
         .post(
           "https://sheet.best/api/sheets/0b121bc4-a8b1-4944-a8e2-f741525474c3",
           {
-            ID: data.id,
-            NAME: data.name,
-            SCORE: data.score,
+            id: data.id,
+            name: data.name,
+            score: data.score,
           }
         )
         .then(() => {
@@ -47,9 +47,6 @@ export default createStore({
         })
         .catch(() => {
           commit("SET_STATUS", "ERROR");
-        })
-        .then(() => {
-          commit("SET_STATUS", "");
         });
     },
   },

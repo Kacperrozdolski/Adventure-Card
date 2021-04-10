@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import BasicPopup from "./BasicPopup.vue";
+import BasicPopup from "../components/BasicPopup";
 export default {
   name: "GameFinished",
   props: ["score"],
@@ -47,7 +47,7 @@ export default {
       if (this.$store.state.ranking.length == 0) {
         id = 0;
       } else {
-        id = this.$store.state.ranking[this.$store.state.ranking.length - 1].ID;
+        id = this.$store.state.ranking[this.$store.state.ranking.length - 1].id;
       }
       let data = {
         id: ++id,

@@ -25,7 +25,7 @@
 
 <script>
 import BasicCard from "../components/BasicCard.vue";
-import GameFinished from "../components/GameFinished.vue";
+import GameFinished from "./GameFinished.vue";
 import MiniLogo from "../components/MiniLogo.vue";
 import BasicFooter from "../components/BasicFooter.vue";
 import { generateCardDeck } from "../utils/generalUtils";

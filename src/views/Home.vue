@@ -1,6 +1,7 @@
 <template>
   <div class="adventure-body">
     <img src="../assets/background/adventure-card.png" class="logo" />
+    <Ranking v-if="ranking" />
     <div class="menu">
       <div class="menu-button play" @click="redirectToGame">
         <p>PLAY</p>
@@ -18,7 +19,9 @@
           @click="changeLevel('forward')"
         />
       </div>
-      <div class="menu-button"><p>RANKING</p></div>
+      <div @click="ranking = true" class="menu-button">
+        <p>RANKING</p>
+      </div>
     </div>
     <BasicFooter :icons="true" />
   </div>
@@ -26,6 +29,7 @@
 
 <script>
 import BasicFooter from "../components/BasicFooter.vue";
+import Ranking from "./Ranking";
 import { levels } from "../utils/gameConfig";
 
 export default {
@@ -33,13 +37,17 @@ export default {
   data() {
     return {
       currentLevel: 0,
+      ranking: false,
       level: {
         name: "easy",
         numberOfCards: 12,
       },
     };
   },
-  components: { BasicFooter },
+  mounted() {
+    this.$store.dispatch("getRanking");
+  },
+  components: { BasicFooter, Ranking },
   methods: {
     redirectToGame() {
       this.$router.push(`/game?level=${this.level.name}`);
@@ -85,7 +93,7 @@ export default {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    z-index: 2;
+    z-index: 1;
     .menu-button {
       width: 35vh;
       height: 14%;
