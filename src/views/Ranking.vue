@@ -11,7 +11,7 @@
         :score="query[2]"
       />
     </div>
-    <button @click="redirectToMenu">Main menu</button>
+    <button @click="redirectToMenu">MENU</button>
   </BasicPopup>
 </template>
 
@@ -37,7 +37,6 @@ export default {
       ]);
     }
     this.ranking.sort((a, b) => b[2] - a[2]);
-    console.log(this.ranking.length == 0);
   },
   methods: {
     redirectToMenu() {

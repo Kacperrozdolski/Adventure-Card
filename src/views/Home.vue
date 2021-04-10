@@ -3,7 +3,7 @@
     <img src="../assets/background/adventure-card.png" class="logo" />
     <Ranking v-if="ranking" />
     <div class="menu">
-      <div class="menu-button play" @click="redirectToGame">
+      <div class="menu-button" @click="redirectToGame">
         <p>PLAY</p>
       </div>
       <div class="menu-button">
@@ -105,6 +105,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
       p {
         font-weight: 400;
         font-size: 1.25rem;
@@ -119,9 +120,6 @@ export default {
       .right {
         transform: rotate(180deg);
       }
-    }
-    .play {
-      cursor: pointer;
     }
   }
 }

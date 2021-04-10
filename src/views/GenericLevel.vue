@@ -123,13 +123,13 @@ export default {
   align-items: center;
   flex-direction: column;
   &--easy {
-    background-image: url("../assets/background/easy_background.png");
+    background-image: url("../assets/background/easy_background.gif");
   }
   &--medium {
-    background-image: url("../assets/background/medium_background.png");
+    background-image: url("../assets/background/medium_background.gif");
   }
   &--hard {
-    background-image: url("../assets/background/hard_background.png");
+    background-image: url("../assets/background/hard_background.gif");
   }
 
   nav {
