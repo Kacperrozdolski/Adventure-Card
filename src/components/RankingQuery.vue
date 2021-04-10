@@ -34,10 +34,10 @@ export default {
     margin: 10px 0;
   }
   .position {
-    width: 15%;
+    width: 20%;
   }
   .name {
-    width: 65%;
+    width: 60%;
   }
   .score {
     width: 25%;

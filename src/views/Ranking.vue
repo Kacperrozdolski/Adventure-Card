@@ -1,11 +1,12 @@
 <template>
   <BasicPopup>
     <h1>RANKING</h1>
-    <div @click="asd" class="ranking-container">
+    <div class="ranking-container">
+      <p v-if="$store.state.ranking.length == 0">No records set yet!.</p>
       <RankingQuery
         v-for="query in ranking"
         :key="query[0]"
-        :position="query[0]"
+        :position="ranking.indexOf(query) + 1"
         :name="query[1]"
         :score="query[2]"
       />
@@ -35,9 +36,8 @@ export default {
         this.$store.state.ranking[items].score,
       ]);
     }
-    console.log(this.ranking);
     this.ranking.sort((a, b) => b[2] - a[2]);
-    console.log(this.ranking);
+    console.log(this.ranking.length == 0);
   },
   methods: {
     redirectToMenu() {
@@ -48,6 +48,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+p {
+  text-align: center;
+}
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -91,7 +94,7 @@ h1 {
   width: 90%;
   font-family: "Poppins";
   overflow-y: scroll;
-  transform: translate(5px, 0);
+  transform: translate(10px, 0);
 }
 button {
   width: 35%;
