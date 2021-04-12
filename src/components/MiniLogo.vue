@@ -14,9 +14,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 img {
-  position: absolute;
-  left: 0px;
-  height: 70%;
   cursor: pointer;
 }
 </style>

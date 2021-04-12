@@ -53,6 +53,7 @@ p {
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
+  position: absolute;
 }
 ::-webkit-scrollbar-button {
   width: 0px;
@@ -90,10 +91,9 @@ h1 {
 }
 .ranking-container {
   height: 65%;
-  width: 90%;
+  width: 100%;
   font-family: "Poppins";
   overflow-y: scroll;
-  transform: translate(10px, 0);
 }
 button {
   width: 35%;
@@ -108,5 +108,34 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media only screen and (max-width: 660px) {
+  .level-container {
+    nav {
+      display: flex;
+      flex-direction: column;
+      .logo {
+        height: 30vw;
+        width: auto;
+      }
+      .score {
+        display: none;
+      }
+    }
+  }
+  .level-container__cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 400px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .first {
+    display: none;
+  }
 }
 </style>

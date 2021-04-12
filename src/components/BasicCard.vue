@@ -1,13 +1,31 @@
 <template>
   <div class="basic-card" :id="card.id">
-    <vue-flip width="155px" height="155px" v-model="selectedHandler">
+    <vue-flip
+      :width="handleWidth"
+      :height="handleWidth"
+      v-model="selectedHandler"
+    >
       <template v-slot:front>
-        <div class="card" :style="{ background: this.levelSettings.color }">
+        <div
+          class="card"
+          :style="{
+            background: this.levelSettings.color,
+            width: this.handleWidth,
+            height: this.handleWidth,
+          }"
+        >
           <img :src="this.cardImageUrl" />
         </div>
       </template>
       <template v-slot:back class="back easy">
-        <div class="card" :style="{ background: this.levelSettings.color }">
+        <div
+          class="card"
+          :style="{
+            background: this.levelSettings.color,
+            width: this.handleWidth,
+            height: this.handleWidth,
+          }"
+        >
           <img :src="this.url" />
         </div>
       </template>
@@ -30,6 +48,9 @@ export default {
     cardImageUrl() {
       return require(`@/assets/${this.levelSettings.name}/${this.levelSettings.name}Front.png`);
     },
+    handleWidth() {
+      return "120px";
+    },
   },
 };
 </script>
@@ -44,8 +65,6 @@ export default {
     width: 80%;
   }
   .card {
-    width: 155px;
-    height: 155px;
     display: flex;
     justify-content: center;
     align-items: center;

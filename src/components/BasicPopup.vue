@@ -23,9 +23,11 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   position: absolute;
+  overflow: hidden;
+
   .level-finished-scoreboard {
     min-width: 40%;
     height: 80%;
@@ -61,6 +63,12 @@ export default {
       position: absolute;
       z-index: -1 !important;
     }
+  }
+}
+@media only screen and (max-width: 400px) {
+  .level-finished-scoreboard {
+    width: 95%;
+    height: 80vh !important;
   }
 }
 </style>

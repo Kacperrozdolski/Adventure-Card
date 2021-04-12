@@ -6,7 +6,7 @@
       <div class="timer">
         <p>{{ formattedElapsedTime }}</p>
       </div>
-      <div class="score">score:{{ Math.floor(score) }}</div>
+      <div class="score">{{ Math.floor(score) }}</div>
     </nav>
     <div
       :class="`level-container__cards level-container__cards--${levelSettings.name}`"
@@ -43,6 +43,7 @@ export default {
       score: 0,
       elapsedTime: 0,
       timer: undefined,
+      width: 0,
     };
   },
   methods: {
@@ -136,18 +137,21 @@ export default {
     width: 100%;
     height: 20%;
     display: flex;
-    justify-content: space-between;
     position: relative;
     align-items: center;
+    justify-content: space-evenly;
     color: white;
     font-size: 3rem;
     font-family: Poppins;
     .logo {
+      height: 100px;
       width: 25%;
-      height: 20vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      img {
+        height: 100%;
+      }
     }
     .timer {
       font-weight: 800;
@@ -164,7 +168,7 @@ export default {
       width: 25%;
       height: 100%;
       display: flex;
-      font-weight: 100;
+      font-weight: 800;
       align-items: center;
       justify-content: center;
     }
@@ -177,11 +181,32 @@ export default {
       grid-template: repeat(3, 1fr) / repeat(4, 1fr);
     }
     &--medium {
-      grid-template: repeat(2, 1fr) / repeat(8, 1fr);
+      grid-template: repeat(4, 1fr) / repeat(4, 1fr);
     }
     &--hard {
       grid-template: repeat(3, 1fr) / repeat(6, 1fr);
     }
+  }
+}
+@media only screen and (max-width: 820px) {
+  .level-container {
+    nav {
+      display: flex;
+      flex-direction: column;
+      .logo {
+        height: 30vw;
+        width: auto;
+      }
+      .score {
+        display: none;
+      }
+    }
+  }
+  .level-container__cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

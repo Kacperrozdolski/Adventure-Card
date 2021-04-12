@@ -40,6 +40,7 @@ export default {
       this.array.push(this.$store.state.ranking[i].score);
     }
     this.array.sort((a, b) => b - a);
+    window.scrollTo({ top: 10 + "%", behavior: "smooth" });
   },
   methods: {
     setNewScore() {
@@ -67,7 +68,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 h1 {
   font-size: 3.5rem;
   margin: 30px 0 10px 0;
@@ -79,6 +80,7 @@ h1 {
   width: 100%;
   text-align: center;
   align-items: center;
+  overflow: hidden;
 
   span {
     width: 50%;
@@ -92,7 +94,6 @@ h1 {
     font-family: "Poppins";
     font-weight: 200;
     font-size: 2rem;
-    height: 50px;
   }
 }
 input {
@@ -114,7 +115,7 @@ input:focus {
   justify-content: center;
   flex-direction: column;
   button {
-    width: 35%;
+    width: 150px;
     cursor: pointer;
     outline: none;
     height: 15%;
@@ -128,7 +129,7 @@ input:focus {
     justify-content: center;
   }
   .recived {
-    width: 35%;
+    width: 150px;
     cursor: pointer;
     outline: none;
     height: 15%;
@@ -141,6 +142,19 @@ input:focus {
     align-items: center;
     justify-content: center;
     cursor: default;
+  }
+}
+@media only screen and (max-width: 400px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .level-finished-score {
+    h2 {
+      font-size: 1rem;
+    }
+    span {
+      font-size: 3rem;
+    }
   }
 }
 </style>

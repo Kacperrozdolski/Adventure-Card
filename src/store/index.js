@@ -18,7 +18,7 @@ export default createStore({
       commit("SET_STATUS", "PENDING");
       axios
         .get(
-          "https://sheet.best/api/sheets/0b121bc4-a8b1-4944-a8e2-f741525474c3"
+          "https://sheet.best/api/sheets/9304f4a8-5846-471d-bbfe-37cdc0e3a576"
         )
         .then((response) => {
           commit("SET_RANKING", response.data);
@@ -35,7 +35,7 @@ export default createStore({
       commit("SET_STATUS", "PENDING");
       axios
         .post(
-          "https://sheet.best/api/sheets/0b121bc4-a8b1-4944-a8e2-f741525474c3",
+          "https://sheet.best/api/sheets/9304f4a8-5846-471d-bbfe-37cdc0e3a576",
           {
             id: data.id,
             name: data.name,
