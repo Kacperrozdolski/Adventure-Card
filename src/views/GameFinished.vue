@@ -2,13 +2,15 @@
   <BasicPopup>
     <h1>YOUR SCORE</h1>
     <div class="level-finished-score">
-      <span @click="asd">{{ Math.floor(score) }}</span>
+      <span>{{ Math.floor(score) }}</span>
       <h2>Rank: {{ rank }}</h2>
     </div>
     <input
       type="text"
       v-model="userName"
       placeholder="Your name"
+      maxlength="18"
+      :class="this.error ? 'error' : ''"
       @keyup.enter="setNewScore"
     />
     <div class="scoreboard-menu">
@@ -27,7 +29,13 @@ export default {
   props: ["score"],
   components: { BasicPopup },
   data() {
-    return { array: [], recived: false, userName: "" };
+    return {
+      array: [],
+      recived: false,
+      userName: "",
+      error: false,
+      wait: false,
+    };
   },
   computed: {
     rank() {
@@ -44,19 +52,24 @@ export default {
   },
   methods: {
     setNewScore() {
-      let id;
-      if (this.$store.state.ranking.length == 0) {
-        id = 0;
+      if (this.userName != "") {
+        let id;
+        if (this.$store.state.ranking.length == 0) {
+          id = 0;
+        } else {
+          id = this.$store.state.ranking[this.$store.state.ranking.length - 1]
+            .id;
+        }
+        let data = {
+          id: ++id,
+          name: this.userName,
+          score: Math.floor(this.score),
+        };
+        this.$store.dispatch("setNewScore", data);
+        this.recived = true;
       } else {
-        id = this.$store.state.ranking[this.$store.state.ranking.length - 1].id;
+        this.error = true;
       }
-      let data = {
-        id: ++id,
-        name: this.userName,
-        score: Math.floor(this.score),
-      };
-      this.$store.dispatch("setNewScore", data);
-      this.recived = true;
     },
     playAgain() {
       this.$router.go();
@@ -107,6 +120,27 @@ input:focus {
   border: none;
   outline: none;
 }
+.error {
+  animation: 1s wiggle;
+}
+@keyframes wiggle {
+  0% {
+    transform: rotate(10deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .scoreboard-menu {
   height: 50%;
   width: 100%;
