@@ -2,7 +2,7 @@
   <div class="adventure-body">
     <img src="../assets/background/adventure-card.png" class="logo" />
 
-    <Ranking v-if="ranking" />
+    <Ranking v-if="ranking" @backToMenu="backToMenu" />
     <div class="menu">
       <div class="menu-button" @click="redirectToGame">
         <p>PLAY</p>
@@ -49,6 +49,9 @@ export default {
   methods: {
     redirectToGame() {
       this.$router.push(`/game?level=${this.level.name}`);
+    },
+    backToMenu() {
+      this.ranking = false;
     },
     changeLevel(direction) {
       direction == "forward" ? this.currentLevel++ : this.currentLevel--;
