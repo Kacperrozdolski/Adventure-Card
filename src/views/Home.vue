@@ -1,6 +1,7 @@
 <template>
   <div class="adventure-body">
     <img src="../assets/background/adventure-card.png" class="logo" />
+
     <Ranking v-if="ranking" />
     <div class="menu">
       <div class="menu-button" @click="redirectToGame">
@@ -70,7 +71,7 @@ export default {
 .adventure-body {
   height: 100vh;
   width: 100%;
-  background-image: url("../assets/background/menu_background.gif");
+  background-image: url("../assets/background/menu_background.png");
   background-size: cover;
   display: flex;
   justify-content: center;
