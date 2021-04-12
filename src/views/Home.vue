@@ -6,7 +6,7 @@
       <div class="menu-button" @click="redirectToGame">
         <p>PLAY</p>
       </div>
-      <div class="menu-button">
+      <div class="menu-button changeLevel">
         <img
           src="../assets/icons/arrow.svg"
           class="left"
@@ -43,9 +43,6 @@ export default {
         numberOfCards: 12,
       },
     };
-  },
-  mounted() {
-    this.$store.dispatch("getRanking");
   },
   components: { BasicFooter, Ranking },
   methods: {
@@ -88,12 +85,14 @@ export default {
   }
   .menu {
     height: 70%;
-    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     z-index: 1;
+    .changeLevel {
+      cursor: default !important;
+    }
     .menu-button {
       width: 35vh;
       height: 14%;
@@ -106,6 +105,7 @@ export default {
       align-items: center;
       justify-content: center;
       cursor: pointer;
+
       p {
         font-weight: 400;
         font-size: 1.25rem;
@@ -116,6 +116,7 @@ export default {
       }
       img {
         cursor: pointer;
+        padding: 5% 10%;
       }
       .right {
         transform: rotate(180deg);

@@ -67,7 +67,7 @@ export default {
 }
 @media only screen and (max-width: 400px) {
   .level-finished-scoreboard {
-    width: 95%;
+    width: 100%;
     height: 80vh !important;
   }
 }

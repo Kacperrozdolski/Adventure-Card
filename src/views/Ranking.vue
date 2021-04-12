@@ -53,7 +53,7 @@ p {
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
-  position: absolute;
+  position: fixed;
 }
 ::-webkit-scrollbar-button {
   width: 0px;
@@ -93,6 +93,7 @@ h1 {
   height: 65%;
   width: 100%;
   font-family: "Poppins";
+  border-right: 5px;
   overflow-y: scroll;
 }
 button {
@@ -133,9 +134,6 @@ button {
 @media only screen and (max-width: 400px) {
   h1 {
     font-size: 2rem;
-  }
-  .first {
-    display: none;
   }
 }
 </style>

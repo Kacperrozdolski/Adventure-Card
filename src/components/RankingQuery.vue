@@ -44,19 +44,32 @@ export default {
   }
   .first {
     font-weight: 900;
-    font-size: 2rem !important;
+    font-size: 1.75rem !important;
   }
   .second {
     font-weight: 500 !important ;
     font-size: 1.5rem !important;
   }
   .third {
-    font-weight: 300 !important;
+    font-weight: 400 !important;
     font-size: 1.35rem !important;
   }
   .else {
     font-weight: 300 !important;
-    font-size: 1.15rem !important;
+    font-size: 1.05rem !important;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .ranking-query {
+    .first {
+      font-size: 1.2rem !important;
+    }
+    .second {
+      font-size: 1.15rem !important;
+    }
+    .third {
+      font-size: 1.1rem !important;
+    }
   }
 }
 </style>

@@ -3,7 +3,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  beforeCreate() {
+    this.$store.dispatch("getRanking");
+  },
+};
 </script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;800;900&display=swap");
