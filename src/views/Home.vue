@@ -1,7 +1,7 @@
 <template>
   <div class="adventure-body">
+    <CloudsAnimation />
     <img src="../assets/background/adventure-card.png" class="logo" />
-
     <Ranking v-if="ranking" @backToMenu="backToMenu" />
     <div class="menu">
       <div class="menu-button" @click="redirectToGame">
@@ -30,6 +30,7 @@
 
 <script>
 import BasicFooter from "../components/BasicFooter.vue";
+import CloudsAnimation from "../components/CloudsAnimation.vue";
 import Ranking from "./Ranking";
 import { levels } from "../utils/gameConfig";
 
@@ -45,7 +46,7 @@ export default {
       },
     };
   },
-  components: { BasicFooter, Ranking },
+  components: { BasicFooter, Ranking, CloudsAnimation },
   methods: {
     redirectToGame() {
       this.$router.push(`/game?level=${this.level.name}`);
@@ -74,7 +75,7 @@ export default {
 .adventure-body {
   height: 100vh;
   width: 100%;
-  background-image: url("../assets/background/menu_background.png");
+  background-image: url("../assets/background/menu_background.gif");
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -87,6 +88,7 @@ export default {
     max-width: 100%;
     z-index: 2;
   }
+
   .menu {
     height: 70%;
     display: flex;
