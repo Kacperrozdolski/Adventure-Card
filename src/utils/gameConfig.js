@@ -42,7 +42,7 @@ const createLevel = (name, icons, numberOfCards, color) => {
 };
 
 export const levelSettings = {
-  easy: createLevel("easy", easyIcons, 8, "#F9ECFE"),
+  easy: createLevel("easy", easyIcons, 12, "#F9ECFE"),
   medium: createLevel("medium", mediumIcons, 16, "#C3955C"),
   hard: createLevel("hard", hardIcons, 18, "#8F8F8F"),
 };
