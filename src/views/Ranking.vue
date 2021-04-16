@@ -26,6 +26,9 @@ export default {
       ranking: [],
     };
   },
+  beforeCreate() {
+    this.$store.dispatch("getRanking");
+  },
   mounted() {
     let array = this.$store.state.ranking;
     let number = this.$store.state.ranking.length + 1;
