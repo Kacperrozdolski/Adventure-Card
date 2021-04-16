@@ -107,8 +107,11 @@ export default {
   watch: {
     gameFinished() {
       this.$store.dispatch("getRanking");
-      this.score = this.score * Math.abs(this.elapsedTime / 10000 - 5);
-      this.stopTimer();
+      if (this.elapsedTime / 1000 != 0) {
+        let asd = 40 / (this.elapsedTime / 1000);
+        this.score = this.score * asd + this.score / 2;
+        this.stopTimer();
+      }
     },
   },
 };
